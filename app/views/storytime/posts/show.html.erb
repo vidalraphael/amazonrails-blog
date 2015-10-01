@@ -1,20 +1,24 @@
-<div class="container">
-  <% if params[:preview] %>
-    <div class="alert alert-info" role="alert">Currently viewing a preview of "<%= @post.title %>".</div>
-  <% end %>
-  
-  <div class="row">
-    <div class="col-md-12">
-      <h2><%= @post.title %></h2>
-    </div>
+<div class="card">
+  <div class="card-image">
+    <% if @post.featured_media %>
+      <%= image_tag @post.featured_media.file_url %>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <%= @post.content.html_safe %>
-
-      <p><%= render 'storytime/blogs/tags', post: @post %></p>
-    </div>
+  <div class="card-content">
+    <h3><%= @post.title %></h3>
+    <%= @post.content.html_safe %>
   </div>
-
-  <%= render_comments if @post.show_comments? && !@post.preview %>
+  <div class="card-action">
+    <%= render 'storytime/blogs/tags', post: @post %>
+  </div>
+  <div class="card-action">
+    <%= render_comments if @post.show_comments? && !@post.preview %>
+  </div>
 </div>
+
+
+
+
+
+
+

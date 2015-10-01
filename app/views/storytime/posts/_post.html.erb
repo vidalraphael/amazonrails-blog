@@ -1,13 +1,4 @@
-<!-- <div id="blog_post_<%= post.id %>" class="blog-post">
-  <h2><%= link_to post.title, storytime.post_path(post) %></h2>
-  <p class='muted'><%= post.created_at.strftime("%b %d, %Y") %></p>
-  <%= image_tag post.featured_media.file_url, width: 500 unless post.featured_media.nil? %>
-  <p><%= post.excerpt %></p>
-  <p><%= render 'storytime/posts/tags', post: post %></p>
-  <hr>
-</div> -->
-
-<div class="card z-depth-2">
+<div class="card z-depth-2 post">
   <% if post.featured_media %>
     <div class="card-image">
       <%= image_tag post.featured_media.file_url %>

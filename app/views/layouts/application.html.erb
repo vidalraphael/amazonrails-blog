@@ -20,14 +20,12 @@
 
     <div class="container">
       <ul class="left hide-on-med-and-down">
-        <li><%= link_to 'Home', '/' %></li>
         <% Storytime::Page.published.each do |page| %>
           <li><%= link_to page.title, storytime.page_path(page) %></li>
         <% end %>
       </ul>
     </div>
     <ul class="side-nav" id="mobile-demo">
-      <li><%= link_to 'Home', '/' %></li>
       <% Storytime::Page.published.each do |page| %>
         <li><%= link_to page.title, storytime.page_path(page) %></li>
       <% end %>
@@ -35,13 +33,16 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="container animated fadeIn">
   <div class="row">
     <div class="col s12 l<%= content_for?(:sidebar) ? 8 : 12 %>">
       <%= yield %>
     </div>
     <% if content_for?(:sidebar) %>
       <div class="col s12 l4">
+        <div class="community-logo">
+          <%= image_tag 'logo', class: 'responsive-img' %>
+        </div>
         <%= yield :sidebar %>
       </div>
     <% end %>

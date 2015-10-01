@@ -26,9 +26,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma web server
 gem 'puma'
 # Storytime 2.0 CMS
-gem "storytime"
+gem 'storytime'
 # Use materializecss frontend framework
 gem 'materialize-sass'
+# Use animatecss animations
+gem 'animate-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -13,6 +13,19 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :input
+    b.use :label, class: 'active'
+    b.use :error, wrap_with: { tag: 'span', class: 'error-block' }
+    b.use :hint,  wrap_wpith: { tag: 'span', class: 'help-block' }
+  end
+
+  config.wrappers :vertical_text, tag: 'div', class: 'input-field', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :input, class: 'materialize-textarea'
     b.use :label
     b.use :error, wrap_with: { tag: 'span', class: 'error-block' }
     b.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
@@ -39,6 +52,7 @@ SimpleForm.setup do |config|
 
   config.default_wrapper = :vertical_form
   config.wrapper_mappings = {
+      text: :vertical_text,
       check_boxes: :vertical_radio_and_checkboxes,
       radio_buttons: :vertical_radio_and_checkboxes,
       boolean: :inline_boolean,
