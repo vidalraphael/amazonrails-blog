@@ -126,3 +126,4 @@ pt-BR:
   time:
     formats:
       mediumDate: '%d/%m/%Y'
+      fullDate: '%d/%m/%Y às %H:%M'
