@@ -6,17 +6,19 @@
   </div>
   <div class="card-content">
     <h3><%= @post.title %></h3>
-    <small class='muted'>Postado em <%= l @post.created_at, format: :mediumDate %> por <%= @post.user.email %></small>
-    <p>
+    <small class='muted'>Postado em <%= l @post.created_at, format: :mediumDate %> por <%= @post.user.nick %></small>
+    <div>
       <%= @post.content.html_safe %>
-    </p>
+    </div>
   </div>
   <% if @post.tags.any? %>
     <div class="card-action">
       <%= render 'storytime/blogs/tags', post: @post %>
     </div>
   <% end %>
-  <div class="card-action">
-    <%= render_comments if @post.show_comments? && !@post.preview %>
-  </div>
+  <% if @post.show_comments? && !@post.preview %>
+    <div class="card-action">
+      <%= render 'storytime/comments/comments', url: post_url(@post) %>
+    </div>
+  <% end %>
 </div>

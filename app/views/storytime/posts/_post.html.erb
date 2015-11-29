@@ -6,10 +6,12 @@
   <% end %>
   <div class="card-content">
     <h4 class="post-title"><%= link_to post.title, storytime.post_path(post) %></h4>
-    <small class='muted'>Postado em <%= l post.created_at, format: :mediumDate %> por <%= post.user.email %></small>
+    <small class='muted'>Postado em <%= l post.created_at, format: :mediumDate %> por <%= post.user.nick %></small>
     <br/>
-    <p><%= post.excerpt %></p>
-    <p><%= link_to "Continuar lendo", storytime.post_path(post) %></p>
+    <div>
+      <%= post.excerpt %>
+      <p><%= link_to 'Continuar lendo', storytime.post_path(post) %></p>
+    </div>
   </div>
   <% unless post.tags.empty? %>
     <div class="card-action">

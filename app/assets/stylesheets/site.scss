@@ -9,3 +9,40 @@
     }
   }
 }
+
+.sidebar {
+  padding-top: 8px !important;
+}
+
+#search {
+  margin-bottom: 0;
+}
+
+.post-thumb {
+  height: 50px;
+  transform: translate(-50%, -50%) scale(1.0);
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
+#fb-root {
+  display: none;
+}
+
+.fb-comments, .fb-page {
+  span {
+    @extend .fb-comments;
+    iframe {
+      @extend .fb-comments;
+
+      &::shadow {
+        ._2p3a {
+          @extend .fb-comments;
+        }
+      }
+    }
+  }
+
+  width: 100% !important;
+}

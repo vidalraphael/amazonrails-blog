@@ -16,4 +16,19 @@ module ApplicationHelper
 
     link_to content_tag(:i, "delete", class: "material-icons"), href || resource, opts
   end
+
+  def posts_recentes
+    posts_publicados.order(published_at: :desc).take(3)
+  end
+
+  def posts_populares
+    posts_publicados.order(impressions_count: :desc).take(3)
+  end
+
+  private
+  def posts_publicados
+    Storytime::BlogPost
+        .where('published_at IS NOT NULL')
+        .where('published_at < ?', Time.now)
+  end
 end

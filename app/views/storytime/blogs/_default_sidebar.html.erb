@@ -1,0 +1,53 @@
+<div class="fb-page" data-href="https://www.facebook.com/amazonrails/"
+     data-small-header="false" data-adapt-container-width="true"
+     data-hide-cover="false" data-show-facepile="true"
+     data-show-posts="false" data-width="500">
+  <div class="fb-xfbml-parse-ignore">
+    <blockquote cite="https://www.facebook.com/amazonrails/">
+      <a href="https://www.facebook.com/amazonrails/">AmazonRails</a>
+    </blockquote>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <h5 class="red-text">Receba atualizações</h5>
+    <%= simple_form_for Storytime::Subscription.new do |f| %>
+        <%= f.input :email %>
+        <%= f.button :submit, 'Inscrever' %>
+    <% end %>
+  </div>
+</div>
+<ul class="collection with-header">
+  <li class="collection-header red-text"><h5>Posts populares</h5></li>
+  <% posts_populares.each do |post| %>
+      <li class="collection-item avatar">
+        <span class="circle">
+          <% if post.featured_media %>
+              <%= image_tag post.featured_media.file_url(:thumb), class: 'post-thumb' %>
+          <% else %>
+              <i class="material-icons">subject</i>
+          <% end %>
+        </span>
+        <span class="title"><%= link_to post.title, storytime.post_path(post) %></span>
+        <br/>
+        <small>por <%= post.user.nick %></small>
+      </li>
+  <% end %>
+</ul>
+<ul class="collection with-header">
+  <li class="collection-header red-text"><h5>Posts recentes</h5></li>
+  <% posts_recentes.each do |post| %>
+      <li class="collection-item avatar">
+        <span class="circle">
+          <% if post.featured_media %>
+              <%= image_tag post.featured_media.file_url(:thumb), class: 'post-thumb' %>
+          <% else %>
+              <i class="material-icons">subject</i>
+          <% end %>
+        </span>
+        <span class="title"><%= link_to post.title, storytime.post_path(post) %></span>
+        <br/>
+        <small>por <%= post.user.nick %></small>
+      </li>
+  <% end %>
+</ul>

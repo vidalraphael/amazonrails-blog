@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>AmazonrailsBlog</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
@@ -25,6 +25,17 @@
         <li><%= link_to 'Admin', '/admin' %></li>
       <% end %>
     </ul>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <form action="/" method="GET">
+          <div class="input-field">
+            <input id="search" type="search" name="search" required placeholder="Pesquisar...">
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </li>
+    </ul>
     <ul class="side-nav" id="mobile-demo">
       <% Storytime::Page.published.each do |page| %>
         <li><%= link_to page.title, storytime.page_path(page) %></li>
@@ -39,7 +50,7 @@
       <%= yield %>
     </div>
     <% if content_for?(:sidebar) %>
-      <div class="col s12 l4">
+      <div class="col s12 l4 sidebar">
         <%= yield :sidebar %>
       </div>
     <% end %>
@@ -50,7 +61,7 @@
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <%= image_tag 'logo.png', class: 'responsive-img', width: '120px' %>
+        <%= image_tag 'logo.png', class: 'responsive-img', width: '120' %>
         <h5 class="white-text">AmazonRails</h5>
       </div>
       <div class="col l4 offset-l2 s12">
@@ -72,10 +83,30 @@
   </div>
 </footer>
 
-<script type="text/javascript" charset="utf-8">
-  <% flash.each do |type, msg| %>
-  Materialize.toast("<%= msg %>", 5000);
-  <% end %>
+<% unless flash.empty? %>
+  <script type="text/javascript" charset="utf-8">
+    <% flash.each do |type, msg| %>
+    Materialize.toast("<%= msg %>", 5000);
+    <% end %>
+  </script>
+<% end %>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '457080814477087',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 </script>
 
 </body>
