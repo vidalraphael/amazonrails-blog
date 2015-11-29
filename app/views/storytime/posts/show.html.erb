@@ -1,3 +1,28 @@
+<% content_for :sidebar do %>
+  <%= render 'storytime/blogs/default_sidebar' %>
+  <% posts_similares = @post.similares(5) %>
+  <% unless posts_similares.empty? %>
+
+    <ul class="collection with-header">
+      <li class="collection-header red-text"><h5>Posts similares</h5></li>
+      <% posts_similares.each do |post| %>
+          <li class="collection-item avatar">
+        <span class="circle">
+          <% if post.featured_media %>
+              <%= image_tag post.featured_media.file_url(:thumb), class: 'post-thumb' %>
+          <% else %>
+              <i class="material-icons">subject</i>
+          <% end %>
+        </span>
+            <span class="title"><%= link_to post.title, storytime.post_path(post) %></span>
+            <br/>
+            <small>por <%= post.user.nick %></small>
+          </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
 <div class="card">
   <div class="card-image">
     <% if @post.featured_media %>
@@ -5,16 +30,16 @@
     <% end %>
   </div>
   <div class="card-content">
-    <h3><%= @post.title %></h3>
+    <h4><%= @post.title %></h4>
     <small class='muted'>Postado em <%= l @post.created_at, format: :mediumDate %> por <%= @post.user.nick %></small>
     <div>
       <%= @post.content.html_safe %>
     </div>
   </div>
-  <% if @post.tags.any? %>
-    <div class="card-action">
-      <%= render 'storytime/blogs/tags', post: @post %>
-    </div>
+  <% unless @post.tags.empty? %>
+      <div class="card-action">
+        <%= render 'storytime/posts/tags', post: @post %>
+      </div>
   <% end %>
   <% if @post.show_comments? && !@post.preview %>
     <div class="card-action">

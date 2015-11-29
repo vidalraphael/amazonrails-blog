@@ -17,6 +17,14 @@
     <% end %>
   </div>
 </div>
+<div class="card">
+  <div class="card-content">
+    <h5 class="red-text">Tags</h5>
+    <% Storytime::Tag.mais_usadas(10).each do |t| %>
+        <div class="chip"><%= link_to t.name, storytime.root_path(params: {tag: t.name}) %></div>
+    <% end %>
+  </div>
+</div>
 <ul class="collection with-header">
   <li class="collection-header red-text"><h5>Posts populares</h5></li>
   <% posts_populares.each do |post| %>
