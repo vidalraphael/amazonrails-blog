@@ -4,7 +4,7 @@
   <% unless posts_similares.empty? %>
 
     <ul class="collection with-header">
-      <li class="collection-header red-text"><h5>Posts similares</h5></li>
+      <li class="collection-header red-text widget-title">Posts similares</li>
       <% posts_similares.each do |post| %>
           <li class="collection-item avatar">
         <span class="circle">
@@ -23,14 +23,14 @@
   <% end %>
 <% end %>
 
-<div class="card">
+<div class="card post">
   <div class="card-image">
     <% if @post.featured_media %>
       <%= image_tag @post.featured_media.file_url %>
     <% end %>
   </div>
   <div class="card-content">
-    <h4><%= @post.title %></h4>
+    <div class="post-title"><%= @post.title %></div>
     <small class='muted'>Postado em <%= l @post.created_at, format: :mediumDate %> por <%= @post.user.nick %></small>
     <div>
       <%= @post.content.html_safe %>

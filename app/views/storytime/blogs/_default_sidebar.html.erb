@@ -10,7 +10,7 @@
 </div>
 <div class="card">
   <div class="card-content">
-    <h5 class="red-text">Receba atualizações</h5>
+    <div class="red-text widget-title">Receba atualizações</div>
     <%= simple_form_for Storytime::Subscription.new do |f| %>
         <%= f.input :email %>
         <%= f.button :submit, 'Inscrever' %>
@@ -19,14 +19,14 @@
 </div>
 <div class="card">
   <div class="card-content">
-    <h5 class="red-text">Tags</h5>
+    <div class="red-text widget-title">Tags</div>
     <% Storytime::Tag.mais_usadas(10).each do |t| %>
         <div class="chip"><%= link_to t.name, storytime.root_path(params: {tag: t.name}) %></div>
     <% end %>
   </div>
 </div>
 <ul class="collection with-header">
-  <li class="collection-header red-text"><h5>Posts populares</h5></li>
+  <li class="collection-header red-text widget-title">Posts populares</li>
   <% posts_populares.each do |post| %>
       <li class="collection-item avatar">
         <span class="circle">
@@ -43,7 +43,7 @@
   <% end %>
 </ul>
 <ul class="collection with-header">
-  <li class="collection-header red-text"><h5>Posts recentes</h5></li>
+  <li class="collection-header red-text widget-title">Posts recentes</li>
   <% posts_recentes.each do |post| %>
       <li class="collection-item avatar">
         <span class="circle">
